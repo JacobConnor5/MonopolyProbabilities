@@ -1,7 +1,5 @@
 
-import java.util.LinkedHashMap;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
+import java.util.*;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -20,72 +18,50 @@ public class freqTable extends Application {
     private XYChart.Series<String, Number> series1 =
             new XYChart.Series<>();
 
-    private String[] colours;
+    private Map<String,List<Integer>> colours = Map.of(
+            "Brown",List.of(1,3),
+            "Light Blue",List.of(6,8,9),
+            "Pink",List.of(11,13,14),
+            "Orange",List.of(16,18,19),
+            "Red",List.of(21,23,24),
+            "Yellow",List.of(26,28,29),
+            "Green", List.of(31,32,34),
+            "Blue",List.of(37,39),
+            "Trains",List.of(5,15,25,35),
+            "Utilities",List.of(12,28)
+            );
 
     public freqTable(){
         Squaretable = new LinkedHashMap<>();
 
-        colours = new String[]{"Brown", "Light Blue","Pink","Orange","Red","Yellow","Green","Blue","Trains","Utils"};
-
         if (table.isEmpty()) {
-            System.out.println("start run");
-            for (int i = 0; i < colours.length; i++) {
-
-                table.put(colours[i], 0); //initialises the table to 0
-                System.out.println(colours[i]+":"+table.get(colours[i]));
+            String colour;
+            for (Map.Entry<String, List<Integer>> entry : colours.entrySet()) { //loops through the colours map
+                colour = entry.getKey();//this is the colour currently on
+                table.put(colour, 0); //initialises the table to 0
+                System.out.println(colour+":"+table.get(colour));
             }
         }
     }
 
-
     public void log(int pos){
-        if(pos == 5 || pos == 15 || pos == 25 || pos == 35){
-            table.put("Trains",table.get("Trains")+1); //updates the relavent group
-        }
-        if(pos == 6 || pos == 8 || pos == 9){
-            table.put("Light Blue",table.get("Light Blue")+1);
-        }
-
-        if(pos == 11 || pos == 13 || pos == 14){
-            table.put("Pink",table.get("Pink")+1);
+        for (Map.Entry<String, List<Integer>> entry : colours.entrySet()){
+            if (entry.getValue().contains(pos)){
+                table.put(entry.getKey(),table.get(entry.getKey())+1); //updates the relevant group in the table mapping
+            }
         }
 
-        if(pos == 16 || pos == 18 || pos == 19){
-            table.put("Orange",table.get("Orange")+1);
-        }
-
-        if(pos == 21 || pos == 23 || pos == 24){
-            table.put("Red",table.get("Red")+1);
-        }
-
-        if(pos == 26 || pos == 28 || pos == 29){
-            table.put("Yellow",table.get("Yellow")+1);
-        }
-        if(pos == 31 || pos == 32 || pos == 34){
-            table.put("Green",table.get("Green")+1);
-        }
-        if(pos == 1|| pos == 3){
-            table.put("Brown",table.get("Brown")+1);
-        }
-
-        if(pos == 37|| pos == 39){
-            table.put("Blue",table.get("Blue")+1);
-        }
-        if(pos == 12|| pos == 28){
-            table.put("Utils",table.get("Utils")+1);
-        }
-
-//        table.put(pos,table.get(pos)+1);
     }
     public void plot(){
-        System.out.println("Table before launch: " + table.get(colours[0]));
         launch();
 
     }
     public void getter(){
         System.out.println("running getter ____________");
-        for (int i = 0;i< colours.length;i++){
-            System.out.println(colours[i]+":"+table.get(colours[i]));
+        String colour;
+        for (Map.Entry<String, List<Integer>> entry : colours.entrySet()){
+            colour = entry.getKey();
+            System.out.println(colour+":"+table.get(colour));
         }
 
     }
@@ -101,9 +77,10 @@ public class freqTable extends Application {
         y.setLabel("frequency");
 
         //x.setCategories(FXCollections.<String>observableArrayList(Arrays.asList("Brown","Light Blue","Pink","Orange","Red","Yellow","Green","Blue","Trains","Utils")));
-
-        for (int i = 0; i< this.colours.length; i++){ //loops through the clours array and adds a category to the x axis each time
-            series1.getData().add(new XYChart.Data<>(colours[i], table.get(colours[i])));//table.get(colours[i])));
+        String colour;
+        for (Map.Entry<String, List<Integer>> entry : colours.entrySet()){ //loops through the clours array and adds a category to the x axis each time
+            colour = entry.getKey();
+            series1.getData().add(new XYChart.Data<>(colour, table.get(colour)));//table.get(colours[i])));
         }
 
         Scene scene  = new Scene(bc,800,600);
