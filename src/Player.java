@@ -44,6 +44,19 @@ public class Player {
         this.locked = true;
         this.pos = 10;
     }
+    public void chance(){
+        //16 chance cards
+            //7 advances
+            //2 nearest railroads
+                //1 kings cross railroad
+            //1 utility
+            //1 Go
+            //1 jail
+
+        //16 community chest
+            //1 Go
+
+    }
 
     public void Rolegetter(int di1,int di2){
         System.out.println("\n");
