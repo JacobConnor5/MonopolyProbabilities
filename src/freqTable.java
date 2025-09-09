@@ -12,24 +12,25 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class freqTable extends Application {
-    static LinkedHashMap <String,Integer> Squaretable;
+    static LinkedHashMap<String, Integer> Squaretable;
 
-    private static LinkedHashMap <String,Integer> table = new LinkedHashMap<>();
+    private static LinkedHashMap<String, Integer> table = new LinkedHashMap<>();
     private XYChart.Series<String, Number> series1 =
             new XYChart.Series<>();
 
-    private Map<String,List<Integer>> colours = Map.of(
-            "Brown",List.of(1,3),
-            "Light Blue",List.of(6,8,9),
-            "Pink",List.of(11,13,14),
-            "Orange",List.of(16,18,19),
-            "Red",List.of(21,23,24),
-            "Yellow",List.of(26,28,29),
-            "Green", List.of(31,32,34),
-            "Blue",List.of(37,39),
-            "Trains",List.of(5,15,25,35),
-            "Utilities",List.of(12,28)
-            );
+    private LinkedHashMap<String, List<Integer>> colours = new LinkedHashMap<>();
+    {
+    colours.put("Brown",List.of(1,3));
+    colours.put("Light Blue",List.of(6,8,9));
+    colours.put("Pink",List.of(11,13,14));
+    colours.put("Orange",List.of(16,18,19));
+    colours.put("Red",List.of(21,23,24));
+    colours.put("Yellow",List.of(26,28,29));
+    colours.put("Green",List.of(31,32,34));
+    colours.put("Blue",List.of(37,39));
+    colours.put("Trains",List.of(5,15,25,35));
+    colours.put("Utilities",List.of(12,28));
+    };
 
     public freqTable(){
         Squaretable = new LinkedHashMap<>();
@@ -38,8 +39,8 @@ public class freqTable extends Application {
             String colour;
             for (Map.Entry<String, List<Integer>> entry : colours.entrySet()) { //loops through the colours map
                 colour = entry.getKey();//this is the colour currently on
+                System.out.println("testing testing: "+colour);
                 table.put(colour, 0); //initialises the table to 0
-                System.out.println(colour+":"+table.get(colour));
             }
         }
     }

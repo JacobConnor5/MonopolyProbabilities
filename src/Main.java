@@ -14,7 +14,7 @@ public class Main {
         }
 
         }
-        squares.getter();
+        //squares.getter();
         squares.plot();
     }
 }
