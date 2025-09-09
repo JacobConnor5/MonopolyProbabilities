@@ -2,7 +2,7 @@ Make sure its per square
     so trains dont dominate because there is 4 of them
     and blue and brown have a chance
 
-clean up the log code
+clean up the log code - done
 
 make a dictionary/ 2d array
     colour on one side and a list of the numbers
