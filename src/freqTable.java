@@ -2,20 +2,17 @@
 import java.util.*;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class freqTable extends Application {
-    static LinkedHashMap<String, Integer> Squaretable;
 
-    private static LinkedHashMap<String, Integer> table = new LinkedHashMap<>();
-    private XYChart.Series<String, Number> series1 =
+    private static final LinkedHashMap<String, Integer> table = new LinkedHashMap<>();
+    private final XYChart.Series<String, Number> series1 =
             new XYChart.Series<>();
 
     private final LinkedHashMap<String, List<Integer>> colours = new LinkedHashMap<>();
@@ -33,13 +30,11 @@ public class freqTable extends Application {
     };
 
     public freqTable(){
-        Squaretable = new LinkedHashMap<>();
 
         if (table.isEmpty()) {
             String colour;
             for (Map.Entry<String, List<Integer>> entry : colours.entrySet()) { //loops through the colours map
                 colour = entry.getKey();//this is the colour currently on
-                System.out.println("testing testing: "+colour);
                 table.put(colour, 0); //initialises the table to 0
             }
         }
@@ -81,7 +76,7 @@ public class freqTable extends Application {
         String colour;
         for (Map.Entry<String, List<Integer>> entry : colours.entrySet()){ //loops through the clours array and adds a category to the x axis each time
             colour = entry.getKey();
-            System.out.println("\n\ncolour: "+colour+"\ntotal frequency: "+table.get(colour)+"\nrelative frequency: "+ ((float) table.get(colour)/(float) colours.get(colour).size()));
+            //System.out.println("\n\ncolour: "+colour+"\ntotal frequency: "+table.get(colour)+"\nrelative frequency: "+ ((float) table.get(colour)/(float) colours.get(colour).size()));
 
             series1.getData().add(new XYChart.Data<>(colour, (float) (table.get(colour)/colours.get(colour).size())));//table.get(colours[i])));
         }

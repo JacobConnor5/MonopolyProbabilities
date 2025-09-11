@@ -6,10 +6,10 @@ public class Player {
     private boolean locked;
     private int attempts;
     private int doubles;
-    private List<Integer> chances;
+    private final List<Integer> chances;
     private int chanceSize;
 
-    private List<Integer> chests;
+    private final List<Integer> chests;
     private int chestSize;
 
     public Player (int start){
@@ -59,7 +59,6 @@ public class Player {
                 this.attempts = 0;
             }
         }
-        RoleGetter(di1,di2);
 
     }
 
@@ -91,9 +90,7 @@ public class Player {
                     this.pos = card;
                 }
             }
-            System.out.println("pre remove");
             this.chances.remove(cardIndex);
-            System.out.println("post remove");
 
         }
         chanceSize--;
