@@ -1,11 +1,12 @@
-
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
+
         freqTable squares = new freqTable();
-        for (int j = 0; j<100;j++){
+        for (int j = 0; j<200;j++){
             Player p = new Player(0);
             for (int i = 0; i <= 30; i++) {
                 p.roll();
