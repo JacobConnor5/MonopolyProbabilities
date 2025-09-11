@@ -6,7 +6,7 @@ public class Main {
 
 
         freqTable squares = new freqTable();
-        for (int j = 0; j<200;j++){
+        for (int j = 0; j<1000;j++){
             Player p = new Player(0);
             for (int i = 0; i <= 30; i++) {
                 p.roll();

@@ -18,7 +18,7 @@ public class freqTable extends Application {
     private XYChart.Series<String, Number> series1 =
             new XYChart.Series<>();
 
-    private LinkedHashMap<String, List<Integer>> colours = new LinkedHashMap<>();
+    private final LinkedHashMap<String, List<Integer>> colours = new LinkedHashMap<>();
     {
     colours.put("Brown",List.of(1,3));
     colours.put("Light Blue",List.of(6,8,9));
@@ -81,7 +81,9 @@ public class freqTable extends Application {
         String colour;
         for (Map.Entry<String, List<Integer>> entry : colours.entrySet()){ //loops through the clours array and adds a category to the x axis each time
             colour = entry.getKey();
-            series1.getData().add(new XYChart.Data<>(colour, table.get(colour)));//table.get(colours[i])));
+            System.out.println("\n\ncolour: "+colour+"\ntotal frequency: "+table.get(colour)+"\nrelative frequency: "+ ((float) table.get(colour)/(float) colours.get(colour).size()));
+
+            series1.getData().add(new XYChart.Data<>(colour, (float) (table.get(colour)/colours.get(colour).size())));//table.get(colours[i])));
         }
 
         Scene scene  = new Scene(bc,800,600);
